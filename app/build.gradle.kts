@@ -4,6 +4,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
     id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
 }
 
 kotlin {
@@ -70,10 +71,21 @@ android {
 
 dependencies {
 
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+
+
+    implementation("androidx.datastore:datastore:1.1.0-alpha05")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
     implementation("io.github.raamcosta.compose-destinations:core:1.9.54")
     implementation("io.coil-kt:coil-compose:2.4.0")
     implementation ("com.google.dagger:hilt-android:2.48.1")
-    
+
     ksp("io.github.raamcosta.compose-destinations:ksp:1.9.54")
     kapt("com.google.dagger:hilt-compiler:2.48.1")
 
