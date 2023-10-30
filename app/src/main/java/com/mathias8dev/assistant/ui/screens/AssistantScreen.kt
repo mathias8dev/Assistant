@@ -92,11 +92,11 @@ fun AssistantScreen(
                         modifier = Modifier
                             .widthIn(max = Dp(screenWidthDp * 0.8f))
                             .background(
-                                color = if (history.role.isAssistant) MaterialTheme.colorScheme.primaryContainer
-                                else MaterialTheme.colorScheme.secondaryContainer,
+                                color = if (history.role.isAssistant) MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)
+                                else MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f),
                                 shape = RoundedCornerShape(8.dp)
                             )
-                            .padding(horizontal = 16.dp, vertical = 8.dp)
+                            .padding(8.dp)
                             .animateItemPlacement(),
                         text = history.content,
                         style = MaterialTheme.typography.bodyMedium
@@ -116,7 +116,7 @@ fun AssistantScreen(
         Prompt(
             modifier = Modifier.imePadding(),
             value = userPrompt.value,
-            valuePlaceholder = "",
+            valuePlaceholder = "Message",
             onValueChange = {
                 userPrompt.value = it
             },

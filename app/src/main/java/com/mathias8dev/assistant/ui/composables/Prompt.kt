@@ -3,9 +3,11 @@ package com.mathias8dev.assistant.ui.composables
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -64,11 +66,11 @@ fun Prompt(
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TextField(
+        StandardTextField(
             modifier = Modifier
                 .focusRequester(focusRequester)
                 .width(0.dp)
-                .weight(1f),
+                .weight(1f).heightIn(min = 40.dp, max = 150.dp),
             value = value,
             placeholder = {
                 Text(
@@ -76,10 +78,12 @@ fun Prompt(
                 )
             },
             onValueChange = onValueChange,
+            contentPadding = PaddingValues(top = 8.dp, start = 8.dp),
             colors = TextFieldDefaults.textFieldColors(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
+                disabledIndicatorColor = Color.Transparent,
+                containerColor = Color.Transparent
             )
         )
 
