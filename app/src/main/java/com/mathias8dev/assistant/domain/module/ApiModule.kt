@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
+import com.mathias8dev.assistant.BuildConfig
 import com.mathias8dev.assistant.domain.model.ChatRole
 import com.mathias8dev.assistant.domain.service.OpenAIApiService
 import dagger.Module
@@ -23,7 +24,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ApiModule {
 
-    private const val apiKey = "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"
 
     private val chatRoleGsonAdapter = object : TypeAdapter<ChatRole>() {
         override fun write(out: JsonWriter?, value: ChatRole?) {
@@ -60,7 +60,7 @@ object ApiModule {
             .addInterceptor { chain ->
                 val requestWithHeader = chain.request()
                     .newBuilder()
-                    .header("Authorization", "Bearer $apiKey")
+                    .header("Authorization", "Bearer ${BuildConfig.OPENAI_API_KEY}")
                     .build()
                 chain.proceed(requestWithHeader)
             }.addInterceptor(ApiLoggingInterceptor)

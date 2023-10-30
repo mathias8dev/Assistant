@@ -33,6 +33,15 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val openAiApiKey = com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(
+            rootDir
+        ).getProperty("OPENAI_API_KEY")
+        buildConfigField(
+            type = "String",
+            name = "OPENAI_API_KEY",
+            value = openAiApiKey
+        )
     }
 
     buildTypes {
@@ -53,6 +62,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.3"
