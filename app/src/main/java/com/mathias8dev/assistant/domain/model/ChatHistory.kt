@@ -8,8 +8,10 @@ import java.util.UUID
 
 @Parcelize
 data class ChatHistory(
-    val createdAt: Date,
-    val id: String = "gen " + UUID.randomUUID().toString(),
-    override val role: ChatRole,
+    val createdAt: Date = Date(),
+    val id: String = "user-" + UUID.randomUUID().toString(),
+    override val role: ChatRole = ChatRole.USER,
     override val content: String
 ): ChatMessage, Parcelable
+
+fun ChatHistory.toChatPrompt() = ChatPrompt(role, content)

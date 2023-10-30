@@ -9,10 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.mathias8dev.assistant.ui.screens.destinations.AssistantScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 
-@Destination(start = true)
+@Destination
+@RootNavGraph(start = true)
 @Composable
 fun HomeScreen(
     navigator: DestinationsNavigator

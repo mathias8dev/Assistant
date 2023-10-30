@@ -1,14 +1,25 @@
 package com.mathias8dev.assistant.domain.model
 
+import com.google.gson.annotations.SerializedName
 import java.util.Date
 
 data class ChatCompletionResponse(
     val id: String,
-    val createdAt: Date,
+    @SerializedName("created")
+    val createdAt: Long,
     val choices: List<ChatResponseChoice>
 )
 
 data class ChatResponseChoice(
-    override val role: ChatRole,
-    override val content: String
-): ChatMessage
+    val message: ChatPrompt
+)
+
+fun ChatCompletionResponse.toChatHistory(): ChatHistory {
+    val firstChoice = this.choices.first().message
+    return ChatHistory(
+        id = this.id,
+        createdAt = Date(this.createdAt),
+        role = firstChoice.role,
+        content = firstChoice.content
+    )
+}

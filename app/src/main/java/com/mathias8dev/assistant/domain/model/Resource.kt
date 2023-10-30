@@ -1,33 +1,33 @@
 package com.mathias8dev.assistant.domain.model
 
 import androidx.compose.runtime.Composable
-import kotlin.Exception
 
-sealed interface ApiResponse {
-    data class Success<T>(
+sealed interface Resource <T> {
+    data class Success <T>(
         val data: T
-    ): ApiResponse
+    ): Resource<T>
 
-    data class Error(
+    data class Error<T>(
         val throwable: Throwable
-    ) : ApiResponse
+    ) : Resource<T>
 
-    data object Loading: ApiResponse
+    class Loading<T>: Resource<T>
+    class Idle<T> : Resource<T>
 }
 
-val ApiResponse.isSuccess: Boolean
-    get() = this is ApiResponse.Success<*>
+val Resource<*>.isSuccess: Boolean
+    get() = this is Resource.Success<*>
 
-val ApiResponse.isError: Boolean
-    get() = this is ApiResponse.Error
+val Resource<*>.isError: Boolean
+    get() = this is Resource.Error
 
-val ApiResponse.isLoading: Boolean
-    get() = this is ApiResponse.Loading
+val Resource<*>.isLoading: Boolean
+    get() = this is Resource.Loading
 
-val ApiResponse.isDataEmpty: Boolean
+val Resource<*>.isDataEmpty: Boolean
     get() {
         if (!this.isSuccess) throw RuntimeException("The response is not a successfully response")
-        val response = this as ApiResponse.Success<*>
+        val response = this as Resource.Success<*>
         return response.data == Unit ||
                 response.data == Unit ||
                 (response.data is Collection<*> && response.data.isEmpty())
@@ -36,25 +36,25 @@ val ApiResponse.isDataEmpty: Boolean
 
 
 @Composable
-fun <T> ApiResponse.OnSuccessComposable(
+fun <T> Resource<T>.OnSuccessComposable(
     content: @Composable (data: T)->Unit
 ) {
     if (this.isSuccess && ! this.isDataEmpty) {
-        content((this as ApiResponse.Success<T>).data)
+        content((this as Resource.Success<T>).data)
     }
 }
 
 @Composable
-fun ApiResponse.OnErrorComposable(
+fun Resource<*>.OnErrorComposable(
     content: @Composable (data: Throwable)->Unit
 ) {
     if (this.isError) {
-        content((this as ApiResponse.Error).throwable)
+        content((this as Resource.Error).throwable)
     }
 }
 
 @Composable
-fun ApiResponse.OnLoadingComposable(
+fun Resource<*>.OnLoadingComposable(
     content: @Composable ()->Unit
 ) {
     if (this.isLoading) {

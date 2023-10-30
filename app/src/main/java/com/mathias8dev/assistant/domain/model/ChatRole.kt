@@ -11,3 +11,9 @@ enum class ChatRole(val key: String) {
     @SerializedName("system")
     SYSTEM("system")
 }
+
+val ChatRole.isUser: Boolean
+    get() = this == ChatRole.USER
+
+val ChatRole.isAssistant: Boolean
+    get() = this == ChatRole.ASSISTANT
