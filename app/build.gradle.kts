@@ -71,6 +71,13 @@ android {
 
 dependencies {
     val lifecycleVersion  = "2.6.2"
+    val lottieVersion = "6.1.0"
+
+    // LottieAnimation
+    implementation("com.airbnb.android:lottie-compose:$lottieVersion")
+
+    // Custom Material3 AlertDialog
+    implementation("androidx.compose.material3:material3:1.1.2")
 
     // Timber
     implementation("com.jakewharton.timber:timber:5.0.1")

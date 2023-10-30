@@ -2,4 +2,9 @@
 <resources>
 
     <style name="Theme.Assistant" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="SplashScreenTheme" parent="Theme.Assistant">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/white</item>
+
+    </style>
 </resources>

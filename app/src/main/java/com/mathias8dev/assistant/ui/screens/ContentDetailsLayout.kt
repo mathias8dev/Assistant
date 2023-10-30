@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
@@ -44,7 +45,8 @@ fun ContentDetailsLayout(
 @Composable
 fun ContentDetailsLayout(
     modifier: Modifier = Modifier,
-    onBackClick: ()->Unit,
+    onBackClick: (()->Unit)? = null,
+    showBackButton: Boolean = true,
     title: String,
     content: @Composable ColumnScope.()->Unit
 ) {
@@ -54,13 +56,14 @@ fun ContentDetailsLayout(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = MaterialTheme.colorScheme.secondaryContainer)
+                .height(80.dp)
+                .background(color = MaterialTheme.colorScheme.primary)
                 .windowInsetsPadding(WindowInsets.statusBars)
-                .padding(bottom = 8.dp),
+                .padding(bottom = 8.dp, end = if (showBackButton)32.dp else 0.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(
-                onClick = onBackClick
+            if (showBackButton) IconButton(
+                onClick = onBackClick ?: {}
             ) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
@@ -72,7 +75,7 @@ fun ContentDetailsLayout(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
-                    .padding(end = 32.dp)
+                    .padding(horizontal = if (showBackButton)0.dp else 16.dp)
                     .width(0.dp)
                     .weight(1f),
                 textAlign = TextAlign.Center

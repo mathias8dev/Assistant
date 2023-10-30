@@ -30,7 +30,7 @@ class AssistantViewModel @Inject constructor(
         emptyList()
     )
     val chatHistories = _chatHistories.asStateFlow()
-    private val _userPromptCompletionRequest = MutableStateFlow<Resource<String>>(Resource.Idle())
+    private val _userPromptCompletionRequest = MutableStateFlow<Resource<Unit>>(Resource.Idle())
     val userPromptCompletionRequest = _userPromptCompletionRequest.asStateFlow()
 
 
@@ -51,6 +51,9 @@ class AssistantViewModel @Inject constructor(
                     content = userPrompt
                 )
             )
+            _userPromptCompletionRequest.emit(
+                Resource.Loading()
+            )
             openAIApiRepository.getCompletions(
                 model = ChatModel.GPT_35_TURBO,
                 history = mutableListOf<ChatPrompt>().apply {
@@ -70,7 +73,7 @@ class AssistantViewModel @Inject constructor(
                 .collect {
                     Timber.d("OnGetting completion response $it")
                     _userPromptCompletionRequest.emit(
-                        Resource.Success(userPrompt)
+                        Resource.Success(Unit)
                     )
                     appendToChatHistory(it.toChatHistory())
             }

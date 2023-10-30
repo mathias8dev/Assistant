@@ -10,31 +10,44 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Colors.primary,
+    secondary = Colors.secondary,
+    tertiary = Colors.tertiary,
+    background = Color(0xFF312F2F),
+    surface = Color(0xFF1B1A1B),
+    primaryContainer = Colors.primaryContainer,
+    secondaryContainer = Colors.secondaryContainer,
+    onPrimaryContainer = Colors.onColor(Colors.primaryContainer),
+    onSecondaryContainer = Colors.onColor(Colors.secondaryContainer),
+    onPrimary = Colors.onColor(Colors.primary),
+    onSecondary = Colors.onColor(Colors.primary),
+    onTertiary = Colors.onColor(Colors.primary),
+    onBackground = Color.Black,
+    onSurface = Color.White,
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = Colors.primary,
+    secondary = Colors.secondary,
+    tertiary = Colors.tertiary,
+    background = Colors.background,
+    surface = Colors.surface,
+    primaryContainer = Colors.primaryContainer,
+    secondaryContainer = Colors.secondaryContainer,
+    onPrimaryContainer = Colors.onColor(Colors.primaryContainer),
+    onSecondaryContainer = Colors.onColor(Colors.secondaryContainer),
+    onPrimary = Colors.onColor(Colors.primary),
+    onSecondary = Colors.onColor(Colors.primary),
+    onTertiary = Colors.onColor(Colors.primary),
+    onBackground = Color.Black,
+    onSurface = Color.Black,
 )
 
 @Composable

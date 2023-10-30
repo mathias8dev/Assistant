@@ -144,22 +144,22 @@ fun StandardTextField(
         maxLines = maxLines,
         decorationBox = @Composable { innerTextField ->
             // places leading icon, text field with label and placeholder, trailing icon
-            TextFieldDefaults.TextFieldDecorationBox(
+            TextFieldDefaults.DecorationBox(
                 value = value,
-                visualTransformation = visualTransformation,
                 innerTextField = innerTextField,
-                placeholder = placeholder,
+                enabled = enabled,
+                singleLine = singleLine,
+                visualTransformation = visualTransformation,
+                interactionSource = interactionSource,
+                isError = isError,
                 label = label,
+                placeholder = placeholder,
                 leadingIcon = leadingIcon,
                 trailingIcon = trailingIcon,
                 supportingText = supportingText,
                 shape = shape,
-                singleLine = singleLine,
-                enabled = enabled,
-                isError = isError,
-                interactionSource = interactionSource,
                 colors = colors,
-                contentPadding = contentPadding
+                contentPadding = contentPadding,
             )
         }
     )
