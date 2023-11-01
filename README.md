@@ -4,9 +4,8 @@ This project allows you to build chat based applications on top of GPT models us
 
 ## Demo
 
-![image](https://github.com/mathias8dev/Assistant/assets/96143767/bf13a75c-78ca-48ae-90fc-e4b394be937e)
+![image](https://github.com/mathias8dev/Assistant/assets/96143767/816e7526-84e9-4339-864c-9af1b27bf583)
 
-![image](https://github.com/mathias8dev/Assistant/assets/96143767/7302fb57-66fd-4173-b3b4-98ce36146724)
 
 ![image](https://github.com/mathias8dev/Assistant/assets/96143767/2e5b7a59-a4ce-41df-88d2-3536304d44de)
 
